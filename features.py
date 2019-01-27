@@ -26,12 +26,12 @@ def normalize(token, should_normalize=True):
     :return: None or str
     """
     if not should_normalize:
-        normalized_token = token
+        normalized_token = token if token not in nltk.corpus.stopwords.words('english') else None
 
     else:
 
         ###     YOUR CODE GOES HERE
-        raise NotImplemented
+        normalized_token = token.lower() if token not in nltk.corpus.stopwords.words('english') else None
 
     return normalized_token
 
