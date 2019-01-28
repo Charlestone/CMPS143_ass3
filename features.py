@@ -85,7 +85,6 @@ def get_ngram_features(tokens):
     uni_fd = nltk.FreqDist(tokens)
     bi_fd = nltk.FreqDist(nltk.bigrams(tokens))
     feature_vectors = {'UNI_' + k: v for (k, v) in uni_fd.items()}
-
     for (k, v) in bi_fd.items():
         feature_vectors['BI_' + k[0] + '_' + k[1]] = v
 
@@ -168,7 +167,6 @@ def get_features_category_tuples(category_text_dict, feature_set):
     all_texts = []
 
     assert feature_set in FEATURE_SETS, "unrecognized feature set:{}, Accepted values:{}".format(feature_set, FEATURE_SETS)
-
     for category in category_text_dict:
         for text in category_text_dict[category]:
 
@@ -176,7 +174,19 @@ def get_features_category_tuples(category_text_dict, feature_set):
             feature_vectors = {}
 
             ###     YOUR CODE GOES HERE
+            for i in range(len(words)):
+                nor_word = normalize(words[i])
+                if nor_word is not None:
+                    words[i] = nor_word
+                else:
+                    del words[i]
+                    del tags[i]
 
+            feature_vectors = get_ngram_features(words)
+            if feature_set is "word_pos_features":
+                feature_vectors.update(get_pos_features(tags))
+            else:
+                feature_vectors.update(get_liwc_features(words))
             features_category_tuples.append((feature_vectors, category))
             all_texts.append(text)
 
