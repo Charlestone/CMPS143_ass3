@@ -57,10 +57,16 @@ def get_words_tags(text, should_normalize=True):
     words = []
     tags = []
 
-    # tokenization for each sentence
 
     ###     YOUR CODE GOES HERE
-    raise NotImplemented
+
+    if should_normalize:
+        text = text.lower()
+
+    tagged_sentences = [nltk.pos_tag(nltk.word_tokenize(sent)) for sent in nltk.sent_tokenize(text)]
+    tagged_sentences = [tup for sent in tagged_sentences for tup in sent]
+    words = [tup[0] for tup in tagged_sentences]
+    tags = [tup[1] for tup in tagged_sentences]
 
     return words, tags
 
@@ -75,9 +81,9 @@ def get_ngram_features(tokens):
     """
     feature_vectors = {}
 
-
     ###     YOUR CODE GOES HERE
-    raise NotImplemented
+
+
 
     return feature_vectors
 
@@ -93,7 +99,6 @@ def get_pos_features(tags):
     feature_vectors = {}
 
     ###     YOUR CODE GOES HERE
-    raise NotImplemented
 
     return feature_vectors
 
@@ -106,7 +111,7 @@ def bin(count):
     """
     the_bin = None
     ###     YOUR CODE GOES HERE
-    raise NotImplemented
+    the_bin = count if count < 3 else 3
 
     return the_bin
 
@@ -163,7 +168,6 @@ def get_features_category_tuples(category_text_dict, feature_set):
             feature_vectors = {}
 
             ###     YOUR CODE GOES HERE
-            raise NotImplemented
 
             features_category_tuples.append((feature_vectors, category))
             all_texts.append(text)
