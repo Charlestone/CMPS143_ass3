@@ -142,15 +142,13 @@ def get_liwc_features(words):
 
     # All possible keys to the scores start on line 269
     # of the word_category_counter.py script
-    negative_score = liwc_scores["Negative Emotion"]
-    positive_score = liwc_scores["Positive Emotion"]
-    feature_vectors["Negative Emotion"] = negative_score
-    feature_vectors["Positive Emotion"] = positive_score
+    for (key, value) in liwc_scores:
+        feature_vectors[key] = bin(value)
 
-    if positive_score > negative_score:
-        feature_vectors["liwc:positive"] = 1
-    else:
-        feature_vectors["liwc:negative"] = 1
+    #if positive_score > negative_score:
+    #    feature_vectors["liwc:positive"] = 1
+    #else:
+    #    feature_vectors["liwc:negative"] = 1
 
     return feature_vectors
 
