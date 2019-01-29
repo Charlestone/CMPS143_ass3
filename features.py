@@ -159,6 +159,8 @@ def get_features_category_tuples(category_text_dict, feature_set):
 
     You will might want to update the code here for the competition part.
 
+    This method is going to return a feature vector depending on the feature set indicated in feature set.
+    Also, during the process the stopwords are gonna be eliminated from the feature vector.
     :param category_text_dict:
     :param feature_set:
     :return:
