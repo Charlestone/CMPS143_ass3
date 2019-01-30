@@ -86,7 +86,7 @@ def get_ngram_features(tokens):
     bi_fd = nltk.FreqDist(nltk.bigrams(tokens))
     feature_vectors = {'UNI_' + k: v for (k, v) in uni_fd.items()}
     for (k, v) in bi_fd.items():
-        feature_vectors['BI_' + k[0] + '_' + k[1]] = v
+        feature_vectors['BI_' + k[0] + '_' + bin(k[1])] = v
 
     return feature_vectors
 
@@ -107,7 +107,7 @@ def get_pos_features(tags):
     feature_vectors = {'UNI_' + k: v for (k, v) in uni_fd.items()}
 
     for (k, v) in bi_fd.items():
-        feature_vectors['BI_' + k[0] + '_' + k[1]] = v
+        feature_vectors['BI_' + k[0] + '_' + bin(k[1])] = v
 
     return feature_vectors
 
