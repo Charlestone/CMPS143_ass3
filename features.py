@@ -71,12 +71,13 @@ def get_words_tags(text, should_normalize=True):
     return words, tags
 
 
-def get_ngram_features(tokens):
+def get_ngram_features(tokens, binning):
     """
     This function creates the unigram and bigram features as described in
     the assignment3 handout.
 
     :param tokens:
+    :param binning: whether if we want to bin the values or not
     :return: feature_vectors: a dictionary values for each ngram feature
     """
     feature_vectors = {}
@@ -84,19 +85,20 @@ def get_ngram_features(tokens):
     ###     YOUR CODE GOES HERE
     uni_fd = nltk.FreqDist(tokens)
     bi_fd = nltk.FreqDist(nltk.bigrams(tokens))
-    feature_vectors = {'UNI_' + k: v for (k, v) in uni_fd.items()}
+    feature_vectors = {'UNI_' + k: (bin(v) if binning else v) for (k, v) in uni_fd.items()}
     for (k, v) in bi_fd.items():
-        feature_vectors['BI_' + k[0] + '_' + bin(k[1])] = v
+        feature_vectors['BI_' + k[0] + '_' + k[1]] = (bin(v) if binning else v)
 
     return feature_vectors
 
 
-def get_pos_features(tags):
+def get_pos_features(tags, binning):
     """
     This function creates the unigram and bigram part-of-speech features
     as described in the assignment3 handout.
 
     :param tags: list of POS tags
+    :param binning: whether if we want to bin the values or not
     :return: feature_vectors: a dictionary values for each ngram-pos feature
     """
     feature_vectors = {}
@@ -104,10 +106,10 @@ def get_pos_features(tags):
     ###     YOUR CODE GOES HERE
     uni_fd = nltk.FreqDist(tags)
     bi_fd = nltk.FreqDist(nltk.bigrams(tags))
-    feature_vectors = {'UNI_' + k: v for (k, v) in uni_fd.items()}
+    feature_vectors = {'UNI_' + k: (bin(v) if binning else v) for (k, v) in uni_fd.items()}
 
     for (k, v) in bi_fd.items():
-        feature_vectors['BI_' + k[0] + '_' + bin(k[1])] = v
+        feature_vectors['BI_' + k[0] + '_' + k[1]] = (bin(v) if binning else v)
 
     return feature_vectors
 
@@ -125,11 +127,12 @@ def bin(count):
     return the_bin
 
 
-def get_liwc_features(words):
+def get_liwc_features(words, binning):
     """
     Adds a simple LIWC derived feature
 
     :param words:
+    :param binning: whether if we want to bin the values or not
     :return:
     """
 
@@ -142,7 +145,7 @@ def get_liwc_features(words):
     # All possible keys to the scores start on line 269
     # of the word_category_counter.py script
     for (key, value) in liwc_scores:
-        feature_vectors[key] = bin(value)
+        feature_vectors[key] = (bin(value) if binning else value)
 
     #if positive_score > negative_score:
     #    feature_vectors["liwc:positive"] = 1
@@ -154,7 +157,7 @@ def get_liwc_features(words):
 
 FEATURE_SETS = {"word_pos_features", "word_features", "word_pos_liwc_features"}
 
-def get_features_category_tuples(category_text_dict, feature_set):
+def get_features_category_tuples(category_text_dict, feature_set, binning=False):
     """
 
     You will might want to update the code here for the competition part.
@@ -163,6 +166,7 @@ def get_features_category_tuples(category_text_dict, feature_set):
     Also, during the process the stopwords are gonna be eliminated from the feature vector.
     :param category_text_dict:
     :param feature_set:
+    :param binning: whether if we want to bin the values or not
     :return:
     """
     features_category_tuples = []
@@ -184,11 +188,12 @@ def get_features_category_tuples(category_text_dict, feature_set):
                     del words[i]
                     del tags[i]
 
-            feature_vectors = get_ngram_features(words)
+            feature_vectors = get_ngram_features(words, binning)
             if feature_set is "word_pos_features":
-                feature_vectors.update(get_pos_features(tags))
+                feature_vectors.update(get_pos_features(tags, binning))
             else:
-                feature_vectors.update(get_liwc_features(words))
+                feature_vectors.update(get_pos_features(tags, binning))
+                feature_vectors.update(get_liwc_features(words, binning))
             features_category_tuples.append((feature_vectors, category))
             all_texts.append(text)
 
