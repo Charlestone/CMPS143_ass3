@@ -144,7 +144,7 @@ def get_liwc_features(words, binning):
 
     # All possible keys to the scores start on line 269
     # of the word_category_counter.py script
-    for (key, value) in liwc_scores:
+    for (key, value) in liwc_scores.items():
         feature_vectors[key] = (bin(value) if binning else value)
 
     #if positive_score > negative_score:
@@ -177,6 +177,7 @@ def get_features_category_tuples(category_text_dict, feature_set, binning=False)
         for text in category_text_dict[category]:
 
             words, tags = get_words_tags(text)
+            delete_list = []
             feature_vectors = {}
 
             ###     YOUR CODE GOES HERE
@@ -185,9 +186,11 @@ def get_features_category_tuples(category_text_dict, feature_set, binning=False)
                 if nor_word is not None:
                     words[i] = nor_word
                 else:
-                    del words[i]
-                    del tags[i]
+                    delete_list.append(i)
 
+            for i in reversed(delete_list):
+                del words[i]
+                del tags[i]
             feature_vectors = get_ngram_features(words, binning)
             if feature_set is "word_pos_features":
                 feature_vectors.update(get_pos_features(tags, binning))
