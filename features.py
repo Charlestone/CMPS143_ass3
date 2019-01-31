@@ -194,7 +194,7 @@ def get_features_category_tuples(category_text_dict, feature_set, binning=False)
             feature_vectors = get_ngram_features(words, binning)
             if feature_set is "word_pos_features":
                 feature_vectors.update(get_pos_features(tags, binning))
-            else:
+            if feature_set is "word_pos_liwc_features":
                 feature_vectors.update(get_pos_features(tags, binning))
                 feature_vectors.update(get_liwc_features(words, binning))
             features_category_tuples.append((feature_vectors, category))
