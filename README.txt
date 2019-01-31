@@ -10,3 +10,6 @@ Additionally, you can add the next optional arguments:
 · -b binning: Whether you want to bin the features or not. It's default value is True.
 · -c classifier: Classifier already trained. This allows to run the program with an already
     classifier. It's default value is None.
+
+I run the file as the following:
+python restaurant-competition-P1.py -t test.txt -w restaurant-competition-model-P1-predictions.txt
