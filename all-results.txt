@@ -1,5 +1,5 @@
-The best accuracy I have obtained so far is 0.8607142857142858 with the model trained with the feature set words_pos_features.
-This feature set consists of the unigrams and bigrams for the words and for the pos tags.
+The best accuracy I have obtained so far is 0.8607142857142858 with the model trained with the feature set words_features.
+This feature set consists of the unigrams and bigrams for the words in the text provided.
 Confusion Matrix:
          |   n   p |
          |   e   o |
