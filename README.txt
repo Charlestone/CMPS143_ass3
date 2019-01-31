@@ -10,4 +10,3 @@ Additionally, you can add the next optional arguments:
 · -b binning: Whether you want to bin the features or not. It's default value is True.
 · -c classifier: Classifier already trained. This allows to run the program with an already
     classifier. It's default value is None.
-· -f save_feats: Whether you want to save the features or not. It's default value is False.
