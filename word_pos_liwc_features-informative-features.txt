@@ -4,19 +4,19 @@ Most Informative Features
                UNI_bland = 1              negati : positi =     15.7 : 1.0
           UNI_overpriced = 1              negati : positi =     15.7 : 1.0
         Negative Emotion = 3              negati : positi =     13.6 : 1.0
-          UNI_understand = 1              negati : positi =     13.0 : 1.0
                 UNI_back = 2              negati : positi =     13.0 : 1.0
-                UNI_said = 2              negati : positi =     12.3 : 1.0
+          UNI_understand = 1              negati : positi =     13.0 : 1.0
              UNI_charged = 1              negati : positi =     12.3 : 1.0
+                UNI_said = 2              negati : positi =     12.3 : 1.0
              BI_._highly = 1              positi : negati =     12.2 : 1.0
-              BI_VBG_PRP = 1              negati : positi =     11.7 : 1.0
             UNI_informed = 1              negati : positi =     11.7 : 1.0
-          BI_._excellent = 1              positi : negati =     11.0 : 1.0
-                BI_die_. = 1              positi : negati =     11.0 : 1.0
-             UNI_awesome = 1              positi : negati =     11.0 : 1.0
-               BI_RBR_NN = 1              negati : positi =     11.0 : 1.0
-                BI_VB_'' = 1              negati : positi =     11.0 : 1.0
+              BI_VBG_PRP = 1              negati : positi =     11.7 : 1.0
              BI_never_go = 1              negati : positi =     11.0 : 1.0
+               BI_RBR_NN = 1              negati : positi =     11.0 : 1.0
+          BI_._excellent = 1              positi : negati =     11.0 : 1.0
+             UNI_awesome = 1              positi : negati =     11.0 : 1.0
+                BI_die_. = 1              positi : negati =     11.0 : 1.0
         BI_service_great = 1              positi : negati =     11.0 : 1.0
                 UNI_cozy = 1              positi : negati =     11.0 : 1.0
+                BI_VB_'' = 1              negati : positi =     11.0 : 1.0
 None
