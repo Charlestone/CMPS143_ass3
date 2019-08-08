@@ -1,3 +1,8 @@
+# CMPS143_ass3
+
+In this repository you can find the third assignment of the course CMPS143 Natural Language Processing at UCSC Winter 2019.
+
+## Execution of the file:
 To run the file restaurant-competition-P1.py you would need to write in the terminal:
 
 python restaurant-competition-P1.py
